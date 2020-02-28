@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import {API} from './api/axios'
+
+import APPHeader from "./components/header/Header"
+import LoginForm from './components/login-form/LoginForm'
+
+import Container from '@material-ui/core/Container';
 
 function App() {
+
+    const handleAuth = async (login, password) => {
+        let response = await API.auth(login, password)
+        console.log(response.data)
+    }
+
+    let [isAuth, setAuth] = React.useState(false, [])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Container fixed>
+          {
+              (isAuth) ?
+                  <APPHeader />
+               :
+               < LoginForm auth={handleAuth} />
+          }
+      </Container>
   );
 }
+
 
 export default App;
