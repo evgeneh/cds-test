@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const APPHeader = ({headerText, isArrowBack = false, onIconClick}) => {
+const APPHeader = ({headerText = "", isArrowBack = false, onIconClick}) => {
 
     const classes = useStyles();
 
@@ -36,7 +36,7 @@ const APPHeader = ({headerText, isArrowBack = false, onIconClick}) => {
                             <MenuIcon/>
                         }
                     </IconButton>
-                    <Typography  color="inherit" className={classes.flex}>
+                    <Typography  color="inherit" className={classes.title}>
                         {headerText}
                     </Typography>
                 </Toolbar>

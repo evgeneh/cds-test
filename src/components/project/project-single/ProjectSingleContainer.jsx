@@ -14,7 +14,6 @@ const ProjectContainer = ({project, ...props}) => {
         const fetchProject = async () => {
             let response = await API.getProject(project.id, project.structId)
             if (response.data.success === true) {
-                console.log(response.data.data.breadcrumbs)
                 setProjectStruct(response.data.data)
             }
             else

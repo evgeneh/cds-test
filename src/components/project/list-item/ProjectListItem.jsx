@@ -15,18 +15,18 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
+
+    iconButton: {
         marginRight: theme.spacing(2),
     },
     title: {
         flexGrow: 1,
+        paddingLeft: 5,
     },
 }));
 
 export const ProjectListItem = ({text, hasDocument=true, allowDelete, stageList, openHandler}) => {
+    const classes = useStyles();
 
     return (
         <ListItem>
@@ -38,7 +38,7 @@ export const ProjectListItem = ({text, hasDocument=true, allowDelete, stageList,
                     </Avatar>
                 </IconButton>
             }
-            <ListItemText
+            <ListItemText className={classes.title}
                 primary={text}
             />
             <ListItemSecondaryAction>
