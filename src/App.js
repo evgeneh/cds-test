@@ -6,7 +6,7 @@ import {API} from './api/axios'
 import LoginForm from './components/login-form/LoginForm'
 
 import Container from '@material-ui/core/Container';
-import ProjectContainer from "./components/project/ProjectContainer";
+import ProjectListContainer from "./components/project/ProjectListContainer";
 
 
 
@@ -26,10 +26,10 @@ function App() {
     }
 
     return (
-        <Container fixed>
+        <Container fixed maxWidth='md' >
             {
                 (isAuth) ?
-                    <ProjectContainer/>
+                    <ProjectListContainer/>
                     :
                     < LoginForm auth={handleAuth}/>
             }

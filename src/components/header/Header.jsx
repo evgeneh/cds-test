@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const APPHeader = () => {
+const APPHeader = ({headerText}) => {
 
     const classes = useStyles();
 
@@ -29,8 +29,8 @@ const APPHeader = () => {
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="title" color="inherit" className={classes.flex}>
-                        Проекты
+                    <Typography  color="inherit" className={classes.flex}>
+                        {headerText}
                     </Typography>
                 </Toolbar>
             </AppBar>

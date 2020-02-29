@@ -9,7 +9,12 @@ export const API = {
         return instance.post('auth', {login, password, type: 'web'})
     },
 
-    getProject () {
+    getProject (id, strId) {
+        console.log(id + "  " + strId)
+        return instance.get('project/' + id + '/project-structure/' + strId)
+    },
+
+    getProjectList () {
         return instance.get('project')
     },
 

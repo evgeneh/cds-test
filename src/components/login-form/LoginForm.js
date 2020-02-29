@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(theme => ({
     form: {
-        width: 300,
+        width: 200,
         padding: 20,
     },
 

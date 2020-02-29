@@ -9,7 +9,7 @@ const ProjectListContainer = () => {
 
     React.useEffect(() => {
         const fetchProject = async () => {
-            let projectResponse = await API.getProject()
+            let projectResponse = await API.getProjectList()
             if (projectResponse.data.success === true) {
                 setProjectList(projectResponse.data.data)
             }
