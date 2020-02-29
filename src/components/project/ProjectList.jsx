@@ -15,6 +15,7 @@ import ProjectContainer from "./project-single/ProjectSingleContainer"
 
 import NotesCntrBlock from './list-item/NotesCountBlock'
 
+
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -52,7 +53,10 @@ const ProjectList = ({projectList}) => {
     }
 
     if (!projectList)
-        return <Preloader labelText={'Загрузка списка проектов'}/>
+        return (<>
+            <APPHeader/>
+            <Preloader labelText={'Загрузка списка проектов'}/>
+        </>)
 
     return (
         <div className={classes.root}>

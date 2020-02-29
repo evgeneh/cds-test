@@ -2,10 +2,13 @@ import React, {useState} from 'react';
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
+import headerImg from '../../media/login_img.JPG'
+
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box'
 import {Typography} from "@material-ui/core";
+import CardMedia from '@material-ui/core/CardMedia'
 
 
 const useStyles = makeStyles(theme => ({
@@ -47,6 +50,12 @@ const LoginForm = ({auth, error}) => {
                  css={{ height: '100%' }}>
 
                 <form className={styles.form}>
+                    <CardMedia
+                        component="img"
+                        alt="CDS Header Image"
+
+                        image={headerImg}
+                    /><br/>
                     <TextField required id="standard-required" label="Логин"
                                className={styles.textField}
                                value={state.login}

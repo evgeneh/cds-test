@@ -2,16 +2,15 @@ import React from 'react';
 
 import {API} from './api/axios'
 
+import Container from '@material-ui/core/Container';
 
 import LoginForm from './components/login-form/LoginForm'
+import Preloader from './components/Preloader'
 
-import Container from '@material-ui/core/Container';
-import ProjectListContainer from "./components/project/ProjectListContainer";
-
-
+const ProjectListContainer = React.lazy(() => import( "./components/project/ProjectListContainer"));
 
 function App() {
-
+    //флаг авторизации
     let [isAuth, setAuth] = React.useState(false)
 
     let [loginError, setLoginError] = React.useState(null)
@@ -19,6 +18,7 @@ function App() {
     const handleAuth = async (login, password) => {
         let response = await API.auth(login, password)
         if (response.data.success === true) {
+            //передать токен в header запроса
             API.setAccessToken(response.data.data.accessToken)
             setLoginError(null)
             setAuth(true)
@@ -32,7 +32,9 @@ function App() {
         <Container fixed maxWidth='md' >
             {
                 (isAuth) ?
-                    <ProjectListContainer/>
+                    <React.Suspense fallback={<Preloader/>}>
+                        <ProjectListContainer/>
+                    </React.Suspense>
                     :
                     < LoginForm auth={handleAuth} error={loginError}/>
             }
