@@ -5,7 +5,6 @@ import {makeStyles} from  '@material-ui/core'
 import {IconButton} from '@material-ui/core'
 
 import ListItem from "@material-ui/core/ListItem"
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import FolderIcon from '@material-ui/icons/Folder';

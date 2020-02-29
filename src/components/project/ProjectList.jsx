@@ -36,11 +36,20 @@ const ProjectList = ({projectList}) => {
 
     //начальные id не заданы т.к. не выбран проект
     let [state, setState] = React.useState({id: null, structId: null})
-    const handleStructureChange = (id, structId) =>{
+    //установка id и id структуры происходит из списка проектов
+    const handleIdStructureChange = (id, structId) =>{
         setProjectListShow(false)
         setState({...state, id, structId})
     }
+    //хэндл для вызова из структуры
+    const handleStructureChange = (structId) => {
+        setState({...state, structId})
+    }
 
+    //возвращает пользователя к начальному списку проектов (вызов в шапке страницы)
+    const goToProjectList = () => {
+        setProjectListShow(true)
+    }
 
     if (!projectList)
         return <Preloader labelText={'Загрузка списка проектов'}/>
@@ -58,7 +67,7 @@ const ProjectList = ({projectList}) => {
                                     <ProjectListItem
                                         text={project.title}
                                         allowDelete={false}
-                                        openHandler={handleStructureChange.bind(null, project.id, project.root_structure_id)}
+                                        openHandler={handleIdStructureChange.bind(null, project.id, project.root_structure_id)}
                                     />
                                     <Divider/>
                                 </div>
@@ -66,7 +75,9 @@ const ProjectList = ({projectList}) => {
                         }</List>
                     </>
                     :
-                    <ProjectContainer project={state} setProjectNode={handleStructureChange}/>
+                    <ProjectContainer project={state}
+                                      setProjectNode={handleStructureChange}
+                                      goToProjectList={goToProjectList} />
             }
         </div>
     );

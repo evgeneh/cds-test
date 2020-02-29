@@ -4,6 +4,8 @@ import {makeStyles} from  '@material-ui/core'
 
 import {IconButton, AppBar, Toolbar, Typography} from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -18,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const APPHeader = ({headerText}) => {
+const APPHeader = ({headerText, isArrowBack = false, onIconClick}) => {
 
     const classes = useStyles();
 
@@ -26,8 +28,13 @@ const APPHeader = ({headerText}) => {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
+                    <IconButton edge="start" className={classes.menuButton} color="inherit"
+                                aria-label="menu" onClick={onIconClick}>
+                        {
+                            (isArrowBack) ?
+                            <ArrowBackIcon/> :
+                            <MenuIcon/>
+                        }
                     </IconButton>
                     <Typography  color="inherit" className={classes.flex}>
                         {headerText}

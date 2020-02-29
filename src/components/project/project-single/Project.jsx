@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const Project = ({projectStruct, setProjectNode}) => {
+const Project = ({projectStruct, setProjectNode, goToProjectList}) => {
 
     const classes = useStyles();
 
@@ -34,7 +34,7 @@ const Project = ({projectStruct, setProjectNode}) => {
 
     return (
         <>
-                        <APPHeader headerText={projectStruct.title}/>
+                        <APPHeader isArrowBack={true} headerText={projectStruct.title} onIconClick={goToProjectList}/>
 
                         <List className={classes.list}>{
                             projectStruct.children.map((project) => {
@@ -43,7 +43,7 @@ const Project = ({projectStruct, setProjectNode}) => {
                                         text={project.title}
                                         allowDelete={true}
                                         hasDocument={project.hasDocument}
-                                        openHandler={setProjectNode.bind(null, projectStruct.id, project.id)}
+                                        openHandler={setProjectNode.bind(null, project.id)}
                                     />
                                     <Divider/>
                                 </div>
@@ -55,7 +55,8 @@ const Project = ({projectStruct, setProjectNode}) => {
 
 Project.propTypes = {
     projectStruct: PropTypes.object,
-    setProjectNode: PropTypes.func
+    setProjectNode: PropTypes.func,
+    goToProjectList: PropTypes.func,
 }
 
 export default Project

@@ -4,7 +4,7 @@ import {API} from "../../../api/axios"
 import Project from "./Project";
 
 
-const ProjectContainer = ({project, setProjectNode}) => {
+const ProjectContainer = ({project, ...props}) => {
 
     //структура проекта
     let [projectStruct, setProjectStruct] = useState(null)
@@ -14,17 +14,18 @@ const ProjectContainer = ({project, setProjectNode}) => {
         const fetchProject = async () => {
             let response = await API.getProject(project.id, project.structId)
             if (response.data.success === true) {
+                console.log(response.data.data.breadcrumbs)
                 setProjectStruct(response.data.data)
             }
             else
                 console.log(response.data)
         }
-        console.log(project.id + " "+project.structId)
         fetchProject()
 
     }, [project])
+
     return (
-        <Project projectStruct={projectStruct} setProjectNode={setProjectNode} />
+        <Project projectStruct={projectStruct} {...props} />
     );
 }
 
