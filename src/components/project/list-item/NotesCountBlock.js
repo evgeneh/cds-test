@@ -12,8 +12,7 @@ const useStyles = makeStyles(theme => ({
         display: 'inline-block',
         paddingTop: 5,
         minHeight: 0,
-        minWidth: 0,
-        width: 40,
+        minWidth: 40,
     }
 
 }));

@@ -45,7 +45,7 @@ export const ProjectListItem = ({text, hasDocument=true, allowDelete, openHandle
 
                     {
                         (allowDelete) ?
-                            <DeleteIcon/>
+                            <DeleteIcon color={"error"}/>
                             :
                             <ArrowForwardIosIcon />
                     }

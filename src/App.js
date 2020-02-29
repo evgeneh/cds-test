@@ -14,14 +14,17 @@ function App() {
 
     let [isAuth, setAuth] = React.useState(false)
 
+    let [loginError, setLoginError] = React.useState(null)
+
     const handleAuth = async (login, password) => {
         let response = await API.auth(login, password)
         if (response.data.success === true) {
             API.setAccessToken(response.data.data.accessToken)
+            setLoginError(null)
             setAuth(true)
         } else {
             console.log(response.data)
-            setAuth(false)
+            setLoginError(((response.data.errors &&( response.data.errors.length > 0)) ?  response.data.errors[0] : 'Ошибка авторизации'))
         }
     }
 
@@ -31,7 +34,7 @@ function App() {
                 (isAuth) ?
                     <ProjectListContainer/>
                     :
-                    < LoginForm auth={handleAuth}/>
+                    < LoginForm auth={handleAuth} error={loginError}/>
             }
         </Container>
     );

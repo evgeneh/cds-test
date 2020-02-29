@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
 
     title: {
         flexGrow: 1,
-        paddingTop: 5,
+        paddingTop: 10,
     },
 }));
 
