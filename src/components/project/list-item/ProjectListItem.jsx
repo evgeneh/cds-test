@@ -12,8 +12,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
-
-
 const useStyles = makeStyles(theme => ({
 
     iconButton: {
@@ -25,9 +23,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const ProjectListItem = ({text, hasDocument=true, allowDelete, stageList, openHandler}) => {
+export const ProjectListItem = ({text, hasDocument=true, allowDelete, openHandler, children}) => {
     const classes = useStyles();
-
+//блок с цифрами выводится в дочернем компоненте
     return (
         <ListItem>
             {
@@ -42,7 +40,9 @@ export const ProjectListItem = ({text, hasDocument=true, allowDelete, stageList,
                 primary={text}
             />
             <ListItemSecondaryAction>
+                {children}
                 <IconButton edge="end" aria-label="delete" onClick={openHandler} >
+
                     {
                         (allowDelete) ?
                             <DeleteIcon/>

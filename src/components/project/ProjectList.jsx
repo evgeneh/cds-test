@@ -13,7 +13,7 @@ import Divider from '@material-ui/core/Divider'
 import List from "@material-ui/core/List";
 import ProjectContainer from "./project-single/ProjectSingleContainer"
 
-
+import NotesCntrBlock from './list-item/NotesCountBlock'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -68,7 +68,9 @@ const ProjectList = ({projectList}) => {
                                         text={project.title}
                                         allowDelete={false}
                                         openHandler={handleIdStructureChange.bind(null, project.id, project.root_structure_id)}
-                                    />
+                                    >
+                                        <NotesCntrBlock {...project} />
+                                    </ProjectListItem>
                                     <Divider/>
                                 </div>
                             })

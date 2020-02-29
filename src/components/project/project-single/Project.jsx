@@ -12,6 +12,7 @@ import {ProjectListItem} from '../list-item/ProjectListItem'
 import Divider from '@material-ui/core/Divider'
 import List from "@material-ui/core/List";
 
+import NotesCntrBlock from '../list-item/NotesCountBlock'
 
 const useStyles = makeStyles(theme => ({
 
@@ -48,7 +49,9 @@ const Project = ({projectStruct, setProjectNode, goToProjectList}) => {
                             allowDelete={true}
                             hasDocument={project.hasDocument}
                             openHandler={setProjectNode.bind(null, project.id)}
-                        />
+                        >
+                            <NotesCntrBlock {...project} />
+                        </ProjectListItem>
                         <Divider/>
                     </div>
                 })
