@@ -58,7 +58,7 @@ const LoginForm = ({auth}) => {
                         className={styles.textField}
                         onChange={handleChange('password')}
                     /><br/>
-                    <Button variant="contained" color="gray" onClick={handleSubmit}>
+                    <Button variant="contained" color="default" onClick={handleSubmit}>
                         Вход
                     </Button>
                 </form>
