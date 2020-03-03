@@ -8,13 +8,14 @@ import {appInit} from "./redux/thunk";
 
 const ProjectListContainer = React.lazy(() => import( "./components/project/ProjectListContainer"));
 
-function App({isInit, isAuth}) {
+function App({isInit, isAuth, appInit}) {
 
     React.useEffect(() => {
-        appInit()
-    }, [])
+        if (! isInit)
+            appInit()
+    }, [isInit])
 
-    if (isInit)
+    if (! isInit)
         return <Preloader labelText={'Инициализация'}/>
 
     return (

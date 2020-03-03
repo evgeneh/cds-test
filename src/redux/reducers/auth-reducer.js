@@ -22,11 +22,11 @@ export const authReducer = (state = initialState, action) => {
     }
 };
 
-const loginSuccess = () => {
+export const loginSuccess = () => {
     return {type: LOGIN_SUCCESS}
 }
 
-const loginError = (errorMessage) => {
+export const setLoginError = (errorMessage) => {
     return {type: LOGIN_ERROR, errorMessage}
 }
 

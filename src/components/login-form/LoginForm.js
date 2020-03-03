@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import {connect} from 'react-redux'
+import {loginRequest} from '../../redux/thunk'
 
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import headerImg from '../../media/login_img.JPG'
 
 import Button from '@material-ui/core/Button';
@@ -9,7 +11,6 @@ import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box'
 import {Typography} from "@material-ui/core";
 import CardMedia from '@material-ui/core/CardMedia'
-
 
 const useStyles = makeStyles(theme => ({
     form: {
@@ -27,20 +28,21 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const LoginForm = ({auth, error}) => {
+const LoginForm = ({isLoginError, errorMessage, loginRequest }) => {
 
     let [state, setState] = useState({password: '', login: ''})
-
     const handleChange = (key) => (event) => {
         setState({...state, [key]: event.target.value})
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        auth(state.login, state.password)
+        loginRequest(state.login, state.password)
     }
 
     const styles = useStyles()
+
+    let error = isLoginError ? errorMessage : null
 
     return (
         <div className={styles.root}>
@@ -54,7 +56,8 @@ const LoginForm = ({auth, error}) => {
                         component="img"
                         alt="CDS Header Image"
                         image={headerImg}
-                    /><br/>
+                    />
+                    <br/>
                     <TextField required id="standard-required" label="Логин"
                                className={styles.textField}
                                value={state.login}
@@ -68,10 +71,8 @@ const LoginForm = ({auth, error}) => {
                         label="Пароль"
                         type="password"
                         autoComplete="current-password"
-
                         error={state.password === ""}
                         helperText={state.password === "" ? 'Введите пароль!' : ' '}
-
                         value={state.password}
                         className={styles.textField}
                         onChange={handleChange('password')}
@@ -80,17 +81,21 @@ const LoginForm = ({auth, error}) => {
                     <Button variant="contained" color="default" onClick={handleSubmit}>
                         Вход
                     </Button>
-                    {
-                        (error) &&
-                        <Typography color="error">
-                            {error}
-                        </Typography>
-                    }
+
+                    <Typography color="error">{error}</Typography>
 
                 </form>
             </Box>
         </div>
-    );
+    )
 }
 
-export default LoginForm;
+
+const mapStateToProps = (state) => (
+    {
+        isLoginError: state.auth.isLoginError,
+        errorMessage: state.auth.isAppInitialized
+    }
+)
+
+export default connect(mapStateToProps, {loginRequest})(LoginForm)
