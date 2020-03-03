@@ -15,7 +15,6 @@ import List from "@material-ui/core/List";
 import NotesCntrBlock from '../list-item/NotesCountBlock'
 
 const useStyles = makeStyles(theme => ({
-
     menuButton: {
         marginRight: theme.spacing(2),
     },
@@ -30,16 +29,21 @@ const Project = ({projectStruct, setProjectNode, goToProjectList}) => {
     const classes = useStyles();
 
     if (!projectStruct)
-        return (<>
+        return (
+            <>
                 <APPHeader/>
                 <Preloader labelText={'Загрузка структуры проекта'}/>
-            </>)
+            </>
+        )
 
     return (
         <>
             <APPHeader isArrowBack={true} headerText={projectStruct.title} onIconClick={goToProjectList}/>
 
-            <AppBreadcrumbs breadcrumbs={projectStruct.breadcrumbs} handleClick={setProjectNode}/>
+            <AppBreadcrumbs breadcrumbs={projectStruct.breadcrumbs}
+                            handleClick={setProjectNode}
+                            projectId={projectStruct.project_id}
+            />
             <Divider/>
             <List className={classes.list}>{
                 projectStruct.children.map((project) => {
@@ -48,7 +52,7 @@ const Project = ({projectStruct, setProjectNode, goToProjectList}) => {
                             text={project.title}
                             allowDelete={true}
                             hasDocument={project.hasDocument}
-                            openHandler={setProjectNode.bind(null, project.id)}
+                            openHandler={setProjectNode.bind(null, projectStruct.project_id, project.id)}
                         >
                             <NotesCntrBlock {...project} />
                         </ProjectListItem>

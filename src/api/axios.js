@@ -4,18 +4,23 @@ const instance = axios.create({
     baseURL: 'https://cdsapi.netimob.com/api/'
 });
 
+
+
 export const API = {
-    auth (login, password)  {
+    auth(login, password) {
         return instance.post('auth', {login, password, type: 'web'})
     },
 
-    getProject (id, strId) {
-        console.log(id + "  " + strId)
+    getProject(id, strId) {
         return instance.get('project/' + id + '/project-structure/' + strId)
     },
 
-    getProjectList () {
+    getProjectList() {
         return instance.get('project')
+    },
+
+    getNode(id) {
+        return instance.get('project/' + id)
     },
 
     setAccessToken(token) {
@@ -23,5 +28,5 @@ export const API = {
     }
 }
 
-//instance.defaults.headers.common['Access-Token'] = 1;
+
 

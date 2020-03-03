@@ -32,11 +32,11 @@ const APPHeader = ({headerText = "", isArrowBack = false, onIconClick}) => {
                                 aria-label="menu" onClick={onIconClick}>
                         {
                             (isArrowBack) ?
-                            <ArrowBackIcon/> :
-                            <MenuIcon/>
+                                <ArrowBackIcon/> :
+                                <MenuIcon/>
                         }
                     </IconButton>
-                    <Typography  color="inherit" className={classes.title}>
+                    <Typography color="inherit" className={classes.title}>
                         {headerText}
                     </Typography>
                 </Toolbar>

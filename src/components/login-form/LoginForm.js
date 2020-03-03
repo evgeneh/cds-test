@@ -47,7 +47,7 @@ const LoginForm = ({auth, error}) => {
             <Box display="flex"
                  alignItems="center"
                  justifyContent="center"
-                 css={{ height: '100%' }}>
+                 css={{height: '100%'}}>
 
                 <form className={styles.form}>
                     <CardMedia
@@ -62,7 +62,8 @@ const LoginForm = ({auth, error}) => {
                                error={state.login === ""}
                                helperText={state.login === "" ? 'Введите логин!' : ' '}
                                onChange={handleChange('login')}
-                    /><br/>
+                    />
+                    <br/>
                     <TextField
                         id="standard-password-input"
                         label="Пароль"
@@ -75,22 +76,22 @@ const LoginForm = ({auth, error}) => {
                         value={state.password}
                         className={styles.textField}
                         onChange={handleChange('password')}
-                    /><br/>
+                    />
+                    <br/>
                     <Button variant="contained" color="default" onClick={handleSubmit}>
                         Вход
                     </Button>
                     {
                         (error) &&
-                        <Typography  color="error" >
+                        <Typography color="error">
                             {error}
                         </Typography>
                     }
 
                 </form>
-        </Box>
+            </Box>
         </div>
     );
 }
-
 
 export default LoginForm;

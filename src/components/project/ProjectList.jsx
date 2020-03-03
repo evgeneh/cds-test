@@ -43,8 +43,8 @@ const ProjectList = ({projectList}) => {
         setState({...state, id, structId})
     }
     //хэндл для вызова из структуры
-    const handleStructureChange = (structId) => {
-        setState({...state, structId})
+    const handleStructureChange = (id, structId) => {
+        setState({...state, id, structId})
     }
 
     //возвращает пользователя к начальному списку проектов (вызов в шапке страницы)
