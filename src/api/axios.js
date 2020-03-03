@@ -18,9 +18,8 @@ export const API = {
     getProjectList() {
         return instance.get('project')
     },
-
-    getNode(id) {
-        return instance.get('project/' + id)
+    getProjectStruct(id) {
+        return instance.get(`project/${id}/project-structure`)
     },
 
     setAccessToken(token) {

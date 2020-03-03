@@ -53,7 +53,6 @@ const LoginForm = ({auth, error}) => {
                     <CardMedia
                         component="img"
                         alt="CDS Header Image"
-
                         image={headerImg}
                     /><br/>
                     <TextField required id="standard-required" label="Логин"
