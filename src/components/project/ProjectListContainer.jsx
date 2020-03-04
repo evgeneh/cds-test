@@ -1,22 +1,32 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {projectListRequest} from '../../redux/thunk'
+import {setProjectId} from '../../redux/reducers/project-list-reducer'
 
 import ProjectList from "./ProjectList";
+import ProjectContainer from "./project-single/ProjectSingleContainer"
 
-const ProjectListContainer = ({projectList, projectListRequest}) => {
+const ProjectListContainer = ({projectList, projectListRequest, isListShow, ...props}) => {
     React.useEffect(() => {
         projectListRequest()
     }, [projectList.items])
 
+
+    if (isListShow)
     return (
-        <ProjectList projectList={projectList}/>
-    );
+        <ProjectList projectList={projectList} {...props} />
+    )
+    else return (
+        <ProjectContainer />
+    )
 }
 
 const mapStateToProps = (state) => (
     {
-        projectList: state.projectList.items
+        isListShow: state.projectList.isListShow,
+        projectList: state.projectList.items,
+        isProjectListLoading: state.projectList.isLoading,
+        showProjectList: state.projectList.isListShow
     }
 )
-export default connect(mapStateToProps, {projectListRequest})(ProjectListContainer)
+export default connect(mapStateToProps, {projectListRequest, setProjectId})(ProjectListContainer)

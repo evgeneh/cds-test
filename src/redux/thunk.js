@@ -3,6 +3,7 @@ import {API} from '../api/axios'
 
 import {projectListBeginLoading, setProjectList, setListLoadingError} from './reducers/project-list-reducer'
 import {setAppInitialized, loginSuccess, setLoginError} from './reducers/auth-reducer'
+import {projectBeginLoading, setProjectLoadingError, setProjectStruct} from './reducers/project-reducer'
 
 export const appInit = () => {
     return async (dispatch) => {
@@ -27,6 +28,7 @@ export const projectListRequest = () => {
         try {
             let projectResponse = await API.getProjectList()
             if (projectResponse.data.success === true) {
+                //записать список проектов в state
                 dispatch(setProjectList(projectResponse.data.data))
                 return true
             } else {
@@ -50,5 +52,16 @@ export const loginRequest = (login, password) => async (dispatch) => {
     } else {
         let loginErrorMessage = (response.data.errors?.length > 0) ? response.data.errors[0] : 'Ошибка авторизации'
         dispatch(setLoginError(loginErrorMessage))
+    }
+}
+
+export const projectStructRequest = (projectId, structId) => async (dispatch) => {
+    dispatch(projectBeginLoading())
+    let response = await API.getProjectStruct(projectId, structId)
+    if (response.data.success === true) {
+        dispatch(setProjectStruct(response.data.data))
+    } else {
+        let projectErrorMessage = (response.data.errors?.length > 0) ? response.data.errors[0] : 'Ошибка получения структуры проекта'
+        dispatch(setProjectLoadingError(projectErrorMessage))
     }
 }

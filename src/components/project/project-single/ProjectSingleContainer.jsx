@@ -1,32 +1,31 @@
 import React, {useState} from 'react';
-import {API} from "../../../api/axios"
 
 import Project from "./Project";
+import {connect} from "react-redux";
 
+import {projectStructRequest} from '../../../redux/thunk'
+import {switchProjectList, setProjectId} from '../../../redux/reducers/project-list-reducer'
 
-const ProjectContainer = ({project, ...props}) => {
-
-    //структура проекта
-    let [projectStruct, setProjectStruct] = useState(null)
-
+const ProjectContainer = ({projectId, structId, projectStructRequest, ...props}) => {
 
     React.useEffect(() => {
-        const fetchProject = async () => {
-            let response = await API.getProject(project.id, project.structId)
-            if (response.data.success === true) {
-                setProjectStruct(response.data.data)
-            }
-            else
-                console.log(response.data)
-        }
-        fetchProject()
+        projectStructRequest(projectId, structId)
 
-    }, [project])
+    }, [projectId, structId])
 
     return (
-        <Project projectStruct={projectStruct} {...props} />
+        <Project {...props} />
     );
 }
 
+const mapStateToProps = (state) => (
+    {
+        projectId: state.projectList.currentProjectId,
+        structId: state.projectList.currentStructureId,
+        isStructLoading: state.project.isLoading,
+        projectStruct: state.project.projectStruct,
+    }
+)
 
-export default ProjectContainer;
+export default connect(mapStateToProps, {projectStructRequest, switchProjectList, setProjectId})(ProjectContainer)
+

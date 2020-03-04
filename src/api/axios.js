@@ -11,15 +11,11 @@ export const API = {
         return instance.post('auth', {login, password, type: 'web'})
     },
 
-    getProject(id, strId) {
-        return instance.get('project/' + id + '/project-structure/' + strId)
-    },
-
     getProjectList() {
         return instance.get('project')
     },
-    getProjectStruct(id) {
-        return instance.get(`project/${id}/project-structure`)
+    getProjectStruct(id, structId) {
+        return instance.get(`project/${id}/project-structure/${structId}`)
     },
 
     setAccessToken(token) {

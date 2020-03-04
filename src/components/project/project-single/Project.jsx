@@ -24,11 +24,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const Project = ({projectStruct, setProjectNode, goToProjectList}) => {
-
+const Project = ({projectStruct, isStructLoading, switchProjectList, setProjectId}) => {
     const classes = useStyles();
 
-    if (!projectStruct)
+    if (isStructLoading || projectStruct?.children === undefined)
         return (
             <>
                 <APPHeader/>
@@ -38,10 +37,10 @@ const Project = ({projectStruct, setProjectNode, goToProjectList}) => {
 
     return (
         <>
-            <APPHeader isArrowBack={true} headerText={projectStruct.title} onIconClick={goToProjectList}/>
+            <APPHeader isArrowBack={true} headerText={projectStruct.title} onIconClick={switchProjectList}/>
 
             <AppBreadcrumbs breadcrumbs={projectStruct.breadcrumbs}
-                            handleClick={setProjectNode}
+                            handleClick={setProjectId}
                             projectId={projectStruct.project_id}
             />
             <Divider/>
@@ -52,7 +51,7 @@ const Project = ({projectStruct, setProjectNode, goToProjectList}) => {
                             text={project.title}
                             allowDelete={true}
                             hasDocument={project.hasDocument}
-                            openHandler={setProjectNode.bind(null, projectStruct.project_id, project.id)}
+                            openHandler={setProjectId.bind(null, projectStruct.project_id, project.id)}
                         >
                             <NotesCntrBlock {...project} />
                         </ProjectListItem>
