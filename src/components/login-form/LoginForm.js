@@ -1,101 +1,81 @@
-import React, {useState} from 'react';
-
-import {connect} from 'react-redux'
-import {loginRequest} from '../../redux/thunk'
+import React from 'react';
+import {Field, reduxForm} from 'redux-form'
+import {validate} from "./loginValidate";
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import headerImg from '../../media/login_img.JPG'
-
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Box from '@material-ui/core/Box'
 import {Typography} from "@material-ui/core";
-import CardMedia from '@material-ui/core/CardMedia'
+import headerImg from "../../media/login_img.JPG";
+import CardMedia from "@material-ui/core/CardMedia";
+
 
 const useStyles = makeStyles(theme => ({
-    form: {
-        width: 200,
-        padding: 20,
-    },
+        form: {
+            width: 200,
+            padding: 20,
+        },
 
-    textField: {
-        width: 200,
-        paddingBottom: 10,
-    },
+        textField: {
+            width: 200,
+            paddingBottom: 10,
+        },
+    })
+)
 
-    root: {
-        height: '90vh',
-    }
-}))
-
-const LoginForm = ({isLoginError, errorMessage, loginRequest }) => {
-
-    let [state, setState] = useState({password: '', login: ''})
-    const handleChange = (key) => (event) => {
-        setState({...state, [key]: event.target.value})
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        loginRequest(state.login, state.password)
-    }
-
-    const styles = useStyles()
-
-    let error = isLoginError ? errorMessage : null
-
+const textInput = ({label, input, meta, ...props}) => {
     return (
-        <div className={styles.root}>
-            <Box display="flex"
-                 alignItems="center"
-                 justifyContent="center"
-                 css={{height: '100%'}}>
-
-                <form className={styles.form}>
-                    <CardMedia
-                        component="img"
-                        alt="CDS Header Image"
-                        image={headerImg}
-                    />
-                    <br/>
-                    <TextField required id="standard-required" label="Логин"
-                               className={styles.textField}
-                               value={state.login}
-                               error={state.login === ""}
-                               helperText={state.login === "" ? 'Введите логин!' : ' '}
-                               onChange={handleChange('login')}
-                    />
-                    <br/>
-                    <TextField
-                        id="standard-password-input"
-                        label="Пароль"
-                        type="password"
-                        autoComplete="current-password"
-                        error={state.password === ""}
-                        helperText={state.password === "" ? 'Введите пароль!' : ' '}
-                        value={state.password}
-                        className={styles.textField}
-                        onChange={handleChange('password')}
-                    />
-                    <br/>
-                    <Button variant="contained" color="default" onClick={handleSubmit}>
-                        Вход
-                    </Button>
-
-                    <Typography color="error">{error}</Typography>
-
-                </form>
-            </Box>
-        </div>
+        <TextField
+            label={label}
+            placeholder={label}
+            error={meta.touched && meta.invalid}
+            helperText={meta.touched && meta.error}
+            {...input}
+            {...props}
+        />
     )
 }
 
+const LoginForm = ({error, submitting, handleSubmit}) => {
 
-const mapStateToProps = (state) => (
-    {
-        isLoginError: state.auth.isLoginError,
-        errorMessage: state.auth.isAppInitialized
-    }
-)
+    const styles = useStyles()
 
-export default connect(mapStateToProps, {loginRequest})(LoginForm)
+    return (
+        <form onSubmit={handleSubmit} className={styles.form}>
+            <CardMedia
+                component="img"
+                alt="CDS Header Image"
+                image={headerImg}
+            />
+            <br/>
+            <Field name="login"
+                   component={textInput}
+                   label="Логин"
+                   id="standard-required"
+                   className={styles.textField}
+            />
+            <br/>
+            <Field name="password"
+                   component={textInput}
+                   label="Пароль"
+                   type="password"
+                   autoComplete="current-password"
+                   id="standard-password-input"
+                   className={styles.textField}
+            />
+            <br/>
+            <Button disabled={submitting}
+                    type="submit"
+                    variant="contained"
+                    color="default"
+            >
+                Вход
+            </Button>
+            <Typography color="error" variant="body2">
+                {error}
+            </Typography>
+        </form>
+    )
+}
+
+export default reduxForm({form: 'loginForm', validate})(LoginForm)

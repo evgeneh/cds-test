@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import Project from "./Project";
 import {connect} from "react-redux";
@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {projectStructRequest} from '../../../redux/thunk'
 import {switchProjectList, setProjectId} from '../../../redux/reducers/project-list-reducer'
 
+//загрузка структуры проекта
 const ProjectContainer = ({projectId, structId, projectStructRequest, ...props}) => {
 
     React.useEffect(() => {

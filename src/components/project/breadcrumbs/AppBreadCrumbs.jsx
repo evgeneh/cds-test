@@ -6,7 +6,6 @@ import Link from '@material-ui/core/Link';
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-
         title: {
             flexGrow: 1,
             paddingTop: 10,
@@ -16,6 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 //крайняя крошка должна быть некликабельной
 const AppBreadcrumbs = ({breadcrumbs, projectId, handleClick}) => {
+
     const classes = useStyles();
 
     return (
@@ -24,9 +24,12 @@ const AppBreadcrumbs = ({breadcrumbs, projectId, handleClick}) => {
                 breadcrumbs.map((crumb, index) => {
                     return (
                         (parseInt(breadcrumbs.length) === index + 1) ?
-                            <Typography color="textPrimary" key={crumb.id}>{crumb.title}</Typography>
-                        :
-                            <Link href="#" color="inherit" key={crumb.id} onClick={handleClick.bind(null, projectId, crumb.id)}>
+                            <Typography color="textPrimary" key={crumb.id}>
+                                {crumb.title}
+                            </Typography>
+                            :
+                            <Link href="#" color="inherit" key={crumb.id}
+                                  onClick={handleClick.bind(null, projectId, crumb.id)}>
                                 {crumb.title}
                             </Link>
                     )

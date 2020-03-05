@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const ProjectListItem = ({text, hasDocument=true, allowDelete, openHandler, children}) => {
+export const ProjectListItem = ({text, hasDocument = true, allowDelete, openHandler, children}) => {
     const classes = useStyles();
 //блок с цифрами выводится в дочернем компоненте
     return (
@@ -37,19 +37,19 @@ export const ProjectListItem = ({text, hasDocument=true, allowDelete, openHandle
                 </IconButton>
             }
             <ListItemText className={classes.title}
-                primary={text}
+                          primary={text}
             />
             <ListItemSecondaryAction>
                 {children}
-                <IconButton edge="end" aria-label="delete" onClick={openHandler} >
-
-                    {
-                        (allowDelete) ?
-                            <DeleteIcon color={"error"}/>
-                            :
-                            <ArrowForwardIosIcon />
-                    }
+                <IconButton edge="end" aria-label="delete" onClick={openHandler}>
+                    <ArrowForwardIosIcon/>
                 </IconButton>
+                {
+                    (allowDelete) &&
+                    <IconButton edge="end" aria-label="delete" >
+                        <DeleteIcon color={"error"}/>
+                    </IconButton>
+                }
             </ListItemSecondaryAction>
         </ListItem>
     )

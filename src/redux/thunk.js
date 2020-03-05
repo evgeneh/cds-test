@@ -1,8 +1,9 @@
 import Cookies from 'js-cookie'
 import {API} from '../api/axios'
 
+import {stopSubmit} from 'redux-form'
 import {projectListBeginLoading, setProjectList, setListLoadingError} from './reducers/project-list-reducer'
-import {setAppInitialized, loginSuccess, setLoginError} from './reducers/auth-reducer'
+import {setAppInitialized, loginSuccess} from './reducers/auth-reducer'
 import {projectBeginLoading, setProjectLoadingError, setProjectStruct} from './reducers/project-reducer'
 
 export const appInit = () => {
@@ -51,7 +52,7 @@ export const loginRequest = (login, password) => async (dispatch) => {
         dispatch(loginSuccess())
     } else {
         let loginErrorMessage = (response.data.errors?.length > 0) ? response.data.errors[0] : 'Ошибка авторизации'
-        dispatch(setLoginError(loginErrorMessage))
+        dispatch(stopSubmit('loginForm', {_error: loginErrorMessage}))
     }
 }
 

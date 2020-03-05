@@ -2,20 +2,20 @@ import React from 'react';
 import {connect} from "react-redux";
 import Container from '@material-ui/core/Container';
 
-import LoginForm from './components/login-form/LoginForm'
+import Login from './components/project/Login'
 import Preloader from './components/Preloader'
-import {appInit} from "./redux/thunk";
+import {appInit, loginRequest} from "./redux/thunk";
 
 const ProjectListContainer = React.lazy(() => import( "./components/project/ProjectListContainer"));
 
-function App({isInit, isAuth, appInit}) {
+function App({isInit, isAuth, appInit, loginRequest}) {
 
     React.useEffect(() => {
-        if (! isInit)
+        if (!isInit)
             appInit()
     }, [isInit])
 
-    if (! isInit)
+    if (!isInit)
         return <Preloader labelText={'Инициализация'}/>
 
     return (
@@ -26,7 +26,7 @@ function App({isInit, isAuth, appInit}) {
                         <ProjectListContainer/>
                     </React.Suspense>
                     :
-                    < LoginForm />
+                    <Login loginRequest={loginRequest}/>
             }
         </Container>
     );
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => (
     }
 )
 
-export default connect(mapStateToProps, {appInit})(App)
+export default connect(mapStateToProps, {appInit, loginRequest})(App)

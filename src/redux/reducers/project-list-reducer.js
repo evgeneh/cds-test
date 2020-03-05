@@ -24,7 +24,7 @@ export const projectListReducer = (state = initialState, action) => {
         case SET_PROJECT_ID:
             return {...state, isListShow: false, currentProjectId: action.id, currentStructureId: action.structId}
         case SET_PROJECT_LIST_SHOW:
-            return {state, isListShow: true}
+            return {...state, isListShow: true}
         default:
             return state
     }

@@ -1,27 +1,24 @@
 import React from 'react';
 
 import {makeStyles} from  '@material-ui/core'
-
 import {IconButton, AppBar, Toolbar, Typography} from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-
 const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-}));
-
+        root: {
+            flexGrow: 1,
+        },
+        menuButton: {
+            marginRight: theme.spacing(2),
+        },
+        title: {
+            flexGrow: 1,
+        },
+    })
+);
 
 const APPHeader = ({headerText = "", isArrowBack = false, onIconClick}) => {
-
     const classes = useStyles();
 
     return (
@@ -44,6 +41,5 @@ const APPHeader = ({headerText = "", isArrowBack = false, onIconClick}) => {
         </div>
     );
 }
-
 
 export default APPHeader;

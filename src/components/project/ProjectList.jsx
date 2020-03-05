@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const ProjectList = ({projectList, setProjectId, isProjectListLoading}) => {
+
     const classes = useStyles();
     //хэндл для вызова из структуры
     const handleStructureChange = (id, structId) => {
@@ -32,10 +33,10 @@ const ProjectList = ({projectList, setProjectId, isProjectListLoading}) => {
     }
 
     if (isProjectListLoading)
-        return (<>
+        return <>
             <APPHeader/>
             <Preloader labelText={'Загрузка списка проектов'}/>
-        </>)
+        </>
 
     return (
         <div className={classes.root}>

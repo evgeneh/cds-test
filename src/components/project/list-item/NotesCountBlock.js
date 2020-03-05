@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-
         button: {
             marginRight: theme.spacing(1),
             display: 'inline-block',
@@ -13,21 +12,19 @@ const useStyles = makeStyles(theme => ({
             minHeight: 0,
             minWidth: 40,
         }
-
     })
-);
+)
 
 const IconNotesCntr = ({value, color}) => {
     const classes = useStyles();
     return (
-
-            <label htmlFor="outlined-button-file">
-                <Button className={classes.button}
-                        style={{border: `2px solid ${color}`}}>
-                    {value}
-                </Button>
-            </label>
-       )
+        <label htmlFor="outlined-button-file">
+            <Button className={classes.button}
+                    style={{border: `2px solid ${color}`}}>
+                {value}
+            </Button>
+        </label>
+    )
 }
 
 

@@ -6,10 +6,12 @@ import {setProjectId} from '../../redux/reducers/project-list-reducer'
 import ProjectList from "./ProjectList";
 import ProjectContainer from "./project-single/ProjectSingleContainer"
 
-const ProjectListContainer = ({projectList, projectListRequest, isListShow, ...props}) => {
+const ProjectListContainer = ({projectList, projectListRequest, isListShow, isUpload, ...props}) => {
     React.useEffect(() => {
-        projectListRequest()
-    }, [projectList.items])
+        if (! projectList.length) {
+            projectListRequest()
+        }
+    }, [projectList])
 
 
     if (isListShow)
