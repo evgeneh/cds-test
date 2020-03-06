@@ -1,6 +1,8 @@
-const SET_PROJECT_STRUCT = 'SET_PROJECT_STRUCT'
-const LOAD_STRUCT_ERROR = 'LOAD_STRUCT_ERROR'
-const PROJECT_STRUCT_LOADING = 'PROJECT_STRUCT_LOADING'
+import {
+    LOAD_STRUCT_ERROR,
+    PROJECT_STRUCT_LOADING,
+    SET_PROJECT_STRUCT
+} from "../actions/project-actions";
 
 const initialState = {
     projectStruct: {},
@@ -21,14 +23,3 @@ export const projectReducer = (state = initialState, action) => {
     }
 }
 
-export const projectBeginLoading = () => {
-    return {type: PROJECT_STRUCT_LOADING}
-}
-
-export const setProjectStruct = (projectStruct) => {
-    return {type: SET_PROJECT_STRUCT, payload: projectStruct}
-}
-
-export const setProjectLoadingError = (loadError) => {
-    return { type: LOAD_STRUCT_ERROR , loadError}
-}

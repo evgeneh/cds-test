@@ -1,13 +1,15 @@
+import {
+    INITIALIZE_SUCCESS,
+    LOGIN_ERROR,
+    LOGIN_SUCCESS
+} from "../actions/auth-actions";
+
 let initialState = {
     isAppInitialized: false,
     isAuth: false,
     isLoginError: false,
     errorMessage: null
 }
-
-const INITIALIZE_SUCCESS = 'INITIALIZE_SUCCESS'
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-const LOGIN_ERROR = 'LOGIN_ERROR'
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -22,14 +24,3 @@ export const authReducer = (state = initialState, action) => {
     }
 };
 
-export const loginSuccess = () => {
-    return {type: LOGIN_SUCCESS}
-}
-
-export const setLoginError = (errorMessage) => {
-    return {type: LOGIN_ERROR, errorMessage}
-}
-
-export const setAppInitialized = (isAuth) => {
-    return {type: INITIALIZE_SUCCESS, isAuth}
-}

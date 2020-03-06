@@ -1,8 +1,10 @@
-const SET_PROJECT_LIST = 'SET_PROJECT_LIST'
-const LIST_LOADING_ERROR = 'LIST_LOADING_ERROR'
-const PROJECT_LIST_LOADING = 'PROJECT_LIST_LOADING'
-const SET_PROJECT_ID = 'SET_PROJECT_ID'
-const SET_PROJECT_LIST_SHOW = 'SET_PROJECT_LIST_SHOW'
+import {
+    LIST_LOADING_ERROR,
+    PROJECT_LIST_LOADING,
+    SET_PROJECT_ID,
+    SET_PROJECT_LIST,
+    SET_PROJECT_LIST_SHOW
+} from "../actions/project-actions";
 
 const initialState = {
     items: [],
@@ -28,24 +30,4 @@ export const projectListReducer = (state = initialState, action) => {
         default:
             return state
     }
-}
-
-export const projectListBeginLoading = () => {
-    return {type: PROJECT_LIST_LOADING}
-}
-
-export const setProjectList = (projectList) => {
-    return {type: SET_PROJECT_LIST, payload: projectList}
-}
-
-export const setListLoadingError = (loadError) => {
-    return { type: LIST_LOADING_ERROR , loadError}
-}
-
-export const setProjectId = (id, structId) => {
-    return {type: SET_PROJECT_ID, id, structId}
-}
-
-export const  switchProjectList = () => {
-    return {type: SET_PROJECT_LIST_SHOW}
 }

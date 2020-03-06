@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {projectListRequest} from '../../redux/thunk'
-import {setProjectId} from '../../redux/reducers/project-list-reducer'
+import {setProjectId} from '../../redux/actions/project-actions'
 
 import ProjectList from "./ProjectList";
 import ProjectContainer from "./project-single/ProjectSingleContainer"

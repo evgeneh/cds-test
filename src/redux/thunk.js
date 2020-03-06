@@ -2,9 +2,17 @@ import Cookies from 'js-cookie'
 import {API} from '../api/axios'
 
 import {stopSubmit} from 'redux-form'
-import {projectListBeginLoading, setProjectList, setListLoadingError} from './reducers/project-list-reducer'
-import {setAppInitialized, loginSuccess} from './reducers/auth-reducer'
-import {projectBeginLoading, setProjectLoadingError, setProjectStruct} from './reducers/project-reducer'
+
+import {
+    projectListBeginLoading,
+    setProjectList,
+    setListLoadingError,
+    projectBeginLoading,
+    setProjectLoadingError,
+    setProjectStruct
+} from './actions/project-actions'
+
+import {setAppInitialized, loginSuccess} from './actions/auth-actions'
 
 export const appInit = () => {
     return async (dispatch) => {
